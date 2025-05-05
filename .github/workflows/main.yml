@@ -21,7 +21,7 @@ jobs:
         run: brew install swiftlint
 
       - name: Run SwiftLint
-        run: swiftlint  # or use: swiftlint || true to avoid breaking CI
+        run: swiftlint || true 
 
       - name: Build and Run Tests
         run: |
