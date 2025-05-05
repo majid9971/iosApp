@@ -1,0 +1,48 @@
+# # SwiftLint Configuration File
+
+# # Opt-in rules (good best practices)
+# opt_in_rules:
+#   - empty_count
+#   - force_unwrapping
+#   - force_cast
+#   - explicit_init
+#   - fatal_error_message
+#   - file_header
+#   - discouraged_direct_init
+#   - operator_usage_whitespace
+
+# # Set rule thresholds
+# line_length:
+#   warning: 120
+#   error: 160
+#   ignores_comments: true
+#   ignores_urls: true
+
+# # Type naming
+# type_name:
+#   min_length: 3
+#   max_length: 40
+#   validates_start_with_lowercase: false
+
+# # Exclude these folders (if needed)
+# excluded:
+#   - Pods
+#   - Carthage
+#   - fastlane
+#   - build
+
+# # Customize rules (examples)
+# identifier_name:
+#   min_length: 3
+#   excluded: [id, URL, x, y]
+
+# trailing_whitespace:
+#   ignores_empty_lines: true
+
+# # Disable specific rules temporarily (optional)
+# disabled_rules:
+#   - todo  # allow TODOs in code
+#   - trailing_newline
+
+# # Report format (markdown is good for GitHub Actions)
+# reporter: "xcode"
