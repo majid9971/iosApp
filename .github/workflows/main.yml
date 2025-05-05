@@ -16,38 +16,27 @@ jobs:
 
       - name: Set Xcode Version
         run: sudo xcode-select -s /Applications/Xcode_15.2.app
-        # or match your version like 15.0, 14.3 etc.
-
-      - name: Install Dependencies (e.g., CocoaPods)
-        run: |
-          if [ -f "Podfile" ]; then
-            gem install cocoapods
-            pod install
-          fi
 
       - name: Install SwiftLint
-        run: |
-          brew install swiftlint
+        run: brew install swiftlint
 
       - name: Run SwiftLint
-        run: |
-          swiftlint
+        run: swiftlint  # or use: swiftlint || true to avoid breaking CI
 
       - name: Build and Run Tests
         run: |
           xcodebuild test \
             -scheme pritamIosCI \
-            -workspace pritamIosCI.xcodeproj \  # use -project if not using workspace
+            -project pritamIosCI.xcodeproj \
             -sdk iphonesimulator \
             -destination 'platform=iOS Simulator,name=iPhone 14,OS=17.2' \
             ONLY_ACTIVE_ARCH=NO
 
-      # Optional: Archive the app
       - name: Archive App
         run: |
           xcodebuild archive \
             -scheme pritamIosCI \
-            -workspace pritamIosCI.xcodeproj \
+            -project pritamIosCI.xcodeproj \
             -archivePath $PWD/build/pritamIosCI.xcarchive \
             SKIP_INSTALL=NO \
             BUILD_LIBRARY_FOR_DISTRIBUTION=YES
