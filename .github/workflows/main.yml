@@ -36,8 +36,8 @@ jobs:
       - name: Build and Run Tests
         run: |
           xcodebuild test \
-            -scheme YourAppScheme \
-            -workspace YourApp.xcworkspace \  # use -project if not using workspace
+            -scheme pritamIosCI \
+            -workspace pritamIosCI.xcodeproj \  # use -project if not using workspace
             -sdk iphonesimulator \
             -destination 'platform=iOS Simulator,name=iPhone 14,OS=17.2' \
             ONLY_ACTIVE_ARCH=NO
@@ -46,8 +46,8 @@ jobs:
       - name: Archive App
         run: |
           xcodebuild archive \
-            -scheme YourAppScheme \
-            -workspace YourApp.xcworkspace \
-            -archivePath $PWD/build/YourApp.xcarchive \
+            -scheme pritamIosCI \
+            -workspace pritamIosCI.xcodeproj \
+            -archivePath $PWD/build/pritamIosCI.xcarchive \
             SKIP_INSTALL=NO \
             BUILD_LIBRARY_FOR_DISTRIBUTION=YES
