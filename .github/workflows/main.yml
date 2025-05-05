@@ -1,3 +1,45 @@
+# name: iOS CI
+
+# on:
+#   push:
+#     branches: [ main ]
+#   pull_request:
+#     branches: [ main ]
+
+# jobs:
+#   build-test:
+#     runs-on: macos-latest
+
+#     steps:
+#       - name: Checkout Repository
+#         uses: actions/checkout@v4
+
+#       - name: Set Xcode Version
+#         run: sudo xcode-select -s /Applications/Xcode_15.2.app
+
+#       - name: Install SwiftLint
+#         run: brew install swiftlint
+
+#       - name: Run SwiftLint
+#         run: swiftlint || true 
+
+#       - name: Build and Run Tests
+#         run: |
+#           xcodebuild test \
+#             -scheme pritamIosCI \
+#             -project pritamIosCI.xcodeproj \
+#             -sdk iphonesimulator \
+#             -destination 'platform=iOS Simulator,name=iPhone 14,OS=17.2' \
+#             ONLY_ACTIVE_ARCH=NO
+
+#       - name: Archive App
+#         run: |
+#           xcodebuild archive \
+#             -scheme pritamIosCI \
+#             -project pritamIosCI.xcodeproj \
+#             -archivePath $PWD/build/pritamIosCI.xcarchive \
+#             SKIP_INSTALL=NO \
+#             BUILD_LIBRARY_FOR_DISTRIBUTION=YES
 name: iOS CI
 
 on:
@@ -7,36 +49,19 @@ on:
     branches: [ main ]
 
 jobs:
-  build-test:
+  build-and-test:
     runs-on: macos-latest
 
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-      - name: Set Xcode Version
+      - name: Set up Xcode
         run: sudo xcode-select -s /Applications/Xcode_15.2.app
 
-      - name: Install SwiftLint
-        run: brew install swiftlint
-
-      - name: Run SwiftLint
-        run: swiftlint || true 
-
-      - name: Build and Run Tests
+      - name: Build and Test
         run: |
-          xcodebuild test \
-            -scheme pritamIosCI \
-            -project pritamIosCI.xcodeproj \
-            -sdk iphonesimulator \
-            -destination 'platform=iOS Simulator,name=iPhone 14,OS=17.2' \
-            ONLY_ACTIVE_ARCH=NO
-
-      - name: Archive App
-        run: |
-          xcodebuild archive \
-            -scheme pritamIosCI \
-            -project pritamIosCI.xcodeproj \
-            -archivePath $PWD/build/pritamIosCI.xcarchive \
-            SKIP_INSTALL=NO \
-            BUILD_LIBRARY_FOR_DISTRIBUTION=YES
+          xcodebuild clean test \
+          -scheme pritamIosCI \
+          -project pritamIosCI.xcodeproj \
+          -destination "platform=iOS Simulator,name=iPhone 14,OS=17.2"
