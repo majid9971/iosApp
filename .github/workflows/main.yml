@@ -51,13 +51,12 @@ on:
 jobs:
   build:
     runs-on: macos-latest
+
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-      - name: Install dependencies
-        run: pod install
-
-      - name: Build for Simulator
+      - name: Build app for simulator (no signing)
         run: |
           xcodebuild clean build \
             -project pritamIosCI.xcodeproj \
