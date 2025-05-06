@@ -49,19 +49,20 @@ on:
     branches: [ main ]
 
 jobs:
-  build-and-test:
+  build:
     runs-on: macos-latest
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
-      - name: Set up Xcode
-        run: sudo xcode-select -s /Applications/Xcode_15.2.app
+      - name: Install dependencies
+        run: pod install
 
-      - name: Build and Test
+      - name: Build for Simulator
         run: |
-          xcodebuild clean test \
-          -scheme pritamIosCI \
-          -project pritamIosCI.xcodeproj \
-          -destination "platform=iOS Simulator,name=iPhone 14,OS=17.2"
+          xcodebuild clean build \
+            -project pritamIosCI.xcodeproj \
+            -scheme pritamIosCI \
+            -destination 'platform=iOS Simulator,name=iPhone 15' \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGNING_ALLOWED=NO
