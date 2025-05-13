@@ -40,6 +40,7 @@
 #             -archivePath $PWD/build/pritamIosCI.xcarchive \
 #             SKIP_INSTALL=NO \
 #             BUILD_LIBRARY_FOR_DISTRIBUTION=YES
+
 name: iOS CI - Build, Lint & Test
 
 on:
@@ -74,7 +75,7 @@ jobs:
       - name: Build app (no signing)
         run: |
           xcodebuild clean build \
-            -project pritamIosCI.xcodeproj \
+            -project iosApp/pritamIosCI.xcodeproj \
             -scheme pritamIosCI \
             -destination 'platform=iOS Simulator,name=iPhone 15' \
             CODE_SIGN_IDENTITY="" \
@@ -84,10 +85,11 @@ jobs:
       # --------------------------------------------
       # TEST: Run Unit Tests + Code Coverage
       # --------------------------------------------
+      # Uncomment when ready to run tests with coverage
       # - name: Run Unit Tests (with code coverage)
       #   run: |
       #     xcodebuild test \
-      #       -project pritamIosCI.xcodeproj \
+      #       -project iosApp/pritamIosCI.xcodeproj \
       #       -scheme pritamIosCI \
       #       -destination 'platform=iOS Simulator,name=iPhone 15' \
       #       -enableCodeCoverage YES \
@@ -98,19 +100,19 @@ jobs:
       # --------------------------------------------
       # SCA: Generate Code Coverage Report with Slather
       # --------------------------------------------
-
       - name: Install Slather
         run: |
           sudo gem install slather
 
-          - name: Debug: List Xcode schemes
-          run: |
-             xcodebuild -list -project iosApp/pritamIosCI.xcodeproj
+      - name: List Xcode schemes
+        run: |
+          xcodebuild -list -project iosApp/pritamIosCI.xcodeproj
 
-          - name: Generate Slather Coverage Report
-            run: |
+      - name: Generate Slather Coverage Report
+        run: |
           slather coverage iosApp/pritamIosCI.xcodeproj
-      # - -------------------------------------------
+
+      # --------------------------------------------
       # Artifact Upload (Optional)
       # --------------------------------------------
       - name: Upload Coverage Report
@@ -118,3 +120,4 @@ jobs:
         with:
           name: coverage-report
           path: slather-report
+
