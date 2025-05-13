@@ -1,6 +1,4 @@
 coverage_service: html
-project: pritamIosCI.xcodeproj
+xcodeproj: pritamIosCI.xcodeproj
 scheme: pritamIosCI
 output_directory: slather-report
-binary_basename: pritamIosCI
-build_directory: ./build
