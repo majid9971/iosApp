@@ -1,5 +1,5 @@
 coverage_service: html
-xcodeproj: pritamIosCI.xcodeproj
+xcodeproj: /Users/administrator/Downloads/pritam/pritamIosCI/pritamIosCI.xcodeproj
 scheme: pritamIosCI
 configuration: Debug
 output_directory: slather-report
