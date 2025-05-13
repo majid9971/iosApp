@@ -98,15 +98,19 @@ jobs:
       # --------------------------------------------
       # SCA: Generate Code Coverage Report with Slather
       # --------------------------------------------
+
       - name: Install Slather
         run: |
           sudo gem install slather
 
-      - name: Generate Slather Coverage Report
-        run: |
-          slather coverage iosApp/pritamIosCI.xcodeproj
+          - name: Debug: List Xcode schemes
+          run: |
+             xcodebuild -list -project iosApp/pritamIosCI.xcodeproj
 
-      # --------------------------------------------
+          - name: Generate Slather Coverage Report
+            run: |
+          slather coverage iosApp/pritamIosCI.xcodeproj
+      # - -------------------------------------------
       # Artifact Upload (Optional)
       # --------------------------------------------
       - name: Upload Coverage Report
