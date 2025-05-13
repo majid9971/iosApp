@@ -110,7 +110,6 @@ jobs:
 
       - name: Generate Slather Coverage Report
         run: |
-          cd iosApp
           slather coverage --scheme pritamIosCI pritamIosCI.xcodeproj
       # --------------------------------------------
       # Artifact Upload (Optional)
