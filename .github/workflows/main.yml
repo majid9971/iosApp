@@ -106,11 +106,11 @@ jobs:
 
       - name: List Xcode schemes
         run: |
-          xcodebuild -list -project iosApp/pritamIosCI.xcodeproj
+          xcodebuild -list -project pritamIosCI.xcodeproj
 
       - name: Generate Slather Coverage Report
         run: |
-          slather coverage iosApp/pritamIosCI.xcodeproj
+          slather coverage pritamIosCI.xcodeproj
 
       # --------------------------------------------
       # Artifact Upload (Optional)
