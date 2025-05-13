@@ -75,7 +75,7 @@ jobs:
       - name: Build app (no signing)
         run: |
           xcodebuild clean build \
-            -project iosApp/pritamIosCI.xcodeproj \
+            -project pritamIosCI.xcodeproj \
             -scheme pritamIosCI \
             -destination 'platform=iOS Simulator,name=iPhone 15' \
             CODE_SIGN_IDENTITY="" \
