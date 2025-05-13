@@ -1,4 +1,7 @@
 coverage_service: html
 xcodeproj: pritamIosCI.xcodeproj
 scheme: pritamIosCI
+configuration: Debug
 output_directory: slather-report
+html_enabled: true
+binary_basename: pritamIosCI
