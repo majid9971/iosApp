@@ -1,5 +1,6 @@
 coverage_service: html
-xcodeproj: pritamIosCI.xcodeproj
+project: pritamIosCI.xcodeproj
+scheme: pritamIosCI
 output_directory: slather-report
-ignore:
-  - Pods/*
+binary_basename: pritamIosCI
+build_directory: ./build
